@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Santorini Palace - Luxury Dining</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soft-sand: #F5EFE6;
+            --azure-blue: #1E5F74;
+            --gold-accent: #C9AD7F;
+            --seafoam: #A8C3BC;
+            --sunset-orange: #E27060;
+            --deep-navy: #1A2E35;
+            --pure-white: #FFFFFF;
+            --warm-sand: #D2848C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-sand);
+            color: var(--deep-navy);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--pure-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--azure-blue);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gold-accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--deep-navy);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--sunset-orange);
+        }
+
+        /* Hero Section */
+        .menu-hero {
+            background: linear-gradient(rgba(26, 46, 53, 0.5), rgba(26, 46, 53, 0.5)), 
+                        url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--pure-white);
+        }
+
+        .menu-hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Menu Navigation */
+        .menu-nav {
+            background-color: var(--pure-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 80px;
+            z-index: 90;
+        }
+
+        .menu-nav-container {
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        .menu-nav-links {
+            display: flex;
+            list-style: none;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+            scrollbar-width: none;
+        }
+
+        .menu-nav-links::-webkit-scrollbar {
+            display: none;
+        }
+
+        .menu-nav-links li {
+            margin: 0 1rem;
+        }
+
+        .menu-nav-links a {
+            text-decoration: none;
+            color: var(--deep-navy);
+            font-weight: 500;
+            white-space: nowrap;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .menu-nav-links a:hover,
+        .menu-nav-links a.active {
+            background-color: var(--azure-blue);
+            color: var(--pure-white);
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--deep-navy);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold-accent);
+            margin: 1rem auto;
+        }
+
+        .menu-category {
+            margin-bottom: 4rem;
+        }
+
+        .menu-category h3 {
+            color: var(--azure-blue);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid var(--seafoam);
+            padding-bottom: 0.5rem;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background-color: var(--pure-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .menu-item:hover .menu-item-image img {
+            transform: scale(1.05);
+        }
+
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--azure-blue);
+        }
+
+        .menu-item-price {
+            font-weight: 600;
+            color: var(--sunset-orange);
+            font-size: 1.2rem;
+        }
+
+        .menu-item-description {
+            color: var(--deep-navy);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .menu-item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .menu-tag {
+            background-color: var(--seafoam);
+            color: var(--deep-navy);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .menu-tag.vegetarian {
+            background-color: #A8C3BC;
+            color: #1A2E35;
+        }
+
+        .menu-tag.gluten-free {
+            background-color: #C9AD7F;
+            color: #1A2E35;
+        }
+
+        .menu-tag.spicy {
+            background-color: #E27060;
+            color: white;
+        }
+
+        .menu-tag.signature {
+            background-color: #1E5F74;
+            color: white;
+        }
+
+        /* Chef's Special Section */
+        .chef-special {
+            background-color: var(--pure-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 4rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .chef-special-image {
+            height: 100%;
+        }
+
+        .chef-special-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .chef-special-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .chef-special-content h3 {
+            color: var(--gold-accent);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .chef-special-content h2 {
+            color: var(--azure-blue);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .chef-special-content p {
+            color: var(--deep-navy);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .chef-signature {
+            display: flex;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .chef-signature img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+            border: 3px solid var(--gold-accent);
+        }
+
+        .chef-signature-text h4 {
+            color: var(--azure-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .chef-signature-text p {
+            color: var(--deep-navy);
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* Reservation CTA */
+        .reservation-cta {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .reservation-cta h2 {
+            color: var(--azure-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .reservation-cta p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--deep-navy);
+        }
+
+        .cta-button {
+            background-color: var(--sunset-orange);
+            color: var(--pure-white);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: var(--azure-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--deep-navy);
+            color: var(--pure-white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            color: var(--gold-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column p, .footer-column a {
+            color: var(--seafoam);
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--pure-white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--pure-white);
+            background-color: var(--azure-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--sunset-orange);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--seafoam);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .chef-special {
+                grid-template-columns: 1fr;
+            }
+            
+            .chef-special-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .menu-hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .menu-nav-container {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-hero-content h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Azure<span>SantoriniPalace</span></a>
+            <nav>
+                <ul>
+                                                        <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="finalmenu.html">Dining</a></li>
+                    <li><a href="bookingform.html">Booking</a></li>
+
+                    <li><a href="Amenities.html">Amenities</a></li>
+                    <li><a href="contact.html" style="color: var(--sunset-orange);">Contact</a></li>
+
+                    <li><a href="review.html">Review</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                      <li><a href="finalBarandlounge.html">Bar&Lounge</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Menu Hero Section -->
+    <section class="menu-hero">
+        <div class="container menu-hero-content">
+            <h1>Luxury Dining Experience</h1>
+            <p>Mediterranean flavors meet Aegean elegance at our award-winning beachfront restaurant</p>
+        </div>
+    </section>
+
+    <!-- Menu Navigation -->
+    <section class="menu-nav">
+        <div class="container menu-nav-container">
+            <ul class="menu-nav-links">
+                <li><a href="#starters" class="active">Starters</a></li>
+                <li><a href="#mains">Main Courses</a></li>
+                <li><a href="#seafood">Seafood Specialties</a></li>
+                <li><a href="#desserts">Desserts</a></li>
+                <li><a href="#signature">Chef's Signature</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Our Culinary Offerings</h2>
+            
+            <!-- Starters -->
+            <div class="menu-category" id="starters">
+                <h3>Starters & Small Plates</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Greek Meze Platter">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Aegean Meze Platter</h4>
+                                <span class="menu-item-price">€28</span>
+                            </div>
+                            <p class="menu-item-description">A selection of traditional Greek dips including tzatziki, melitzanosalata, and taramasalata, served with warm pita and seasonal crudités.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-tag vegetarian">Vegetarian</span>
+                                <span class="menu-tag gluten-free">Gluten-Free Option</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Grilled Octopus">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Grilled Santorini Octopus</h4>
+                                <span class="menu-item-price">€32</span>
+                            </div>
+                            <p class="menu-item-description">Tender local octopus grilled to perfection, served with fava puree, capers, and a drizzle of aged balsamic.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-tag signature">Signature Dish</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Saganaki Cheese">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Flaming Saganaki</h4>
+                                <span class="menu-item-price">€24</span>
+                            </div>
+                            <p class="menu-item-description">Pan-seared kefalograviera cheese flambéed with Metaxa brandy at your table, served with fig compote.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-tag vegetarian">Vegetarian</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Courses -->
+            <div class="menu-category" id="mains">
+                <h3>Main Courses</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Lamb Kleftiko">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Lamb Kleftiko</h4>
+                                <span class="menu-item-price">€42</span>
+                            </div>
+                            <p class="menu-item-description">Slow-roasted lamb shoulder with garlic, lemon, and oregano, cooked in parchment paper with potatoes and vegetables.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-tag signature">Signature Dish</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Moussaka">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Santorini Moussaka</h4>
+                                <span class="menu-item-price">€36</span>
+                            </div>
+                            <p class="menu-item-description">Layers of eggplant, spiced lamb, and béchamel sauce, baked to golden perfection.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-tag gluten-free">Gluten-Free Option</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80" alt="Vegetarian Gemista">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Gemista</h4>
+                                <span class="menu-item-price">€32</span>
+                            </div>
+                            <p class="menu-item-description">Tomatoes and bell peppers stuffed with herbed rice, pine nuts, and raisins, baked with potatoes.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-tag vegetarian">Vegetarian</span>
+                                <span class="menu-tag vegan">Vegan Option</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Seafood Specialties -->
+            <div class="menu-category" id="seafood">
+                <h3>Seafood Specialties</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1371&q=80" alt="Grilled Fish">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Catch of the Day</h4>
+                                <span class="menu-item-price">MP</span>
+                            </div>
+                            <p class="menu-item-description">Fresh local fish grilled whole with Santorini caper leaves, cherry tomatoes, and extra virgin olive oil.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-tag gluten-free">Gluten-Free</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Seafood Pasta">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Aegean Seafood Linguine</h4>
+                                <span class="menu-item-price">€38</span>
+                            </div>
+                            <p class="menu-item-description">Homemade linguine with mussels, clams, shrimp, and calamari in a white wine and tomato sauce.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-tag spicy">Spicy Option</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80" alt="Lobster Pasta">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Lobster Spaghetti</h4>
+                                <span class="menu-item-price">€58</span>
+                            </div>
+                            <p class="menu-item-description">Fresh lobster meat with spaghetti in a light cream sauce with cherry tomatoes and fresh basil.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-tag signature">Signature Dish</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chef's Special -->
+            <div class="chef-special" id="signature">
+                <div class="chef-special-image">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Chef's Special Dish">
+                </div>
+                <div class="chef-special-content">
+                    <h3>Chef's Signature Creation</h3>
+                    <h2>Santorini Sunset Seafood Symphony</h2>
+                    <p>An exquisite combination of the freshest local seafood including lobster tail, scallops, and prawns, served with saffron-infused orzo and a velvety bisque sauce made from the shells of the seafood. Garnished with edible gold leaf and served with a side of our house-made sourdough.</p>
+                    <p><strong>Price: €65</strong></p>
+                    <div class="chef-signature">
+                        <img src="https://images.unsplash.com/photo-1581299894007-aaa50297cf16?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Chef Dimitris">
+                        <div class="chef-signature-text">
+                            <h4>Chef Dimitris Papadopoulos</h4>
+                            <p>Executive Chef, Michelin Star 2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desserts -->
+            <div class="menu-category" id="desserts">
+                <h3>Desserts</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80" alt="Baklava">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Santorini Baklava</h4>
+                                <span class="menu-item-price">€14</span>
+                            </div>
+                            <p class="menu-item-description">Layers of crisp phyllo with walnuts and pistachios, sweetened with local thyme honey.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Galaktoboureko">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Galaktoboureko</h4>
+                                <span class="menu-item-price">€12</span>
+                            </div>
+                            <p class="menu-item-description">Creamy semolina custard wrapped in crispy phyllo, served with orange blossom syrup.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-image">
+                            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1557&q=80" alt="Chocolate Dessert">
+                        </div>
+                        <div class="menu-item-content">
+                            <div class="menu-item-header">
+                                <h4 class="menu-item-title">Volcanic Chocolate Fondant</h4>
+                                <span class="menu-item-price">€16</span>
+                            </div>
+                            <p class="menu-item-description">Warm chocolate cake with a molten center, served with vanilla bean ice cream and crushed pistachios.</p>
+                            <div class="menu-item-tags">
+                                <span class="menu-tag signature">Signature Dish</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reservation CTA -->
+            <div class="reservation-cta">
+                <h2>Ready for an unforgettable dining experience?</h2>
+                <p>Book your table today and let us take you on a culinary journey through the flavors of Santorini</p>
+                <a href="Finalbookingtable.html" class="cta-button">Make a Reservation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Azure Santorini Palace</h4>
+                    <p>Experience luxury redefined at our award-winning beachfront resort in Santorini, Greece.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    
+                    <a href="finalmenu.html">Restaurant Menu</a>
+                    <a href="rooms.html">Rooms</a>
+                    <a href="Events.html">Events </a>
+                    <a href="blogs.html">Blogs</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Oia, Santorini 84702, Greece</p>
+                    <p><i class="fas fa-phone"></i> +30 2286 071234</p>
+                    <p><i class="fas fa-envelope"></i> info@azuresantorini.com</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Azure Santorini Palace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Santorini Palace - FAQs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soft-sand: #F5EFE6;
+            --azure-blue: #1E5F74;
+            --gold-accent: #C9AD7F;
+            --seafoam: #A8C3BC;
+            --sunset-orange: #E27060;
+            --deep-navy: #1A2E35;
+            --pure-white: #FFFFFF;
+            --warm-sand: #D2848C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-sand);
+            color: var(--deep-navy);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--pure-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--azure-blue);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gold-accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--deep-navy);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--sunset-orange);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 46, 53, 0.5), rgba(26, 46, 53, 0.5)), 
+                        url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--pure-white);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--deep-navy);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold-accent);
+            margin: 1rem auto;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--pure-white);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: rgba(168, 195, 188, 0.1);
+        }
+
+        .faq-question h3 {
+            color: var(--azure-blue);
+            font-size: 1.2rem;
+        }
+
+        .faq-toggle {
+            width: 30px;
+            height: 30px;
+            background-color: var(--seafoam);
+            color: var(--pure-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+            background-color: var(--gold-accent);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-answer-content p {
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: var(--pure-white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-cta h3 {
+            color: var(--azure-blue);
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            background-color: var(--sunset-orange);
+            color: var(--pure-white);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--azure-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--deep-navy);
+            color: var(--pure-white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            color: var(--gold-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column p, .footer-column a {
+            color: var(--seafoam);
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--pure-white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--pure-white);
+            background-color: var(--azure-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--sunset-orange);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--seafoam);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+
+            .faq-question {
+                padding: 1rem;
+            }
+
+            .faq-question h3 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Azure<span>Santorini Palace</span></a>
+            <nav>
+                <ul>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+<li><a href="rooms.html">Rooms</a></li>
+<li><a href="finalmenu.html">Dining</a></li>
+<li><a href="bookingform.html">Booking</a></li>
+
+<li><a href="Amenities.html">Amenities</a></li>
+<li><a href="finalcontact (2).html" style="color: var(--sunset-orange);">Contact</a></li>
+
+<li><a href="review.html">Review</a></li>
+<li><a href="blogs.html">Blog</a></li>
+<li><a href="finalBarandlounge.html">Bar&Lounge</a></li>
+
+</ul>
+
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about your stay at Azure Santorini Palace</p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Your Questions Answered</h2>
+            <div class="faq-container">
+                <!-- Accommodation FAQs -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What types of accommodations does Azure Santorini Palace offer?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Azure Santorini Palace offers a range of luxurious accommodations:</p>
+                            <ul>
+                                <li><strong>Royal Suites</strong> with private infinity pools</li>
+                                <li><strong>Honeymoon Villas</strong> with private jacuzzis</li>
+                                <li><strong>Executive Sea View</strong> suites</li>
+                                <li><strong>Family Penthouses</strong> with multiple bedrooms</li>
+                                <li><strong>Deluxe Garden Rooms</strong> with private patios</li>
+                            </ul>
+                            <p>All accommodations feature premium amenities, luxury linens, and stunning views of either the Aegean Sea or our lush gardens.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What time is check-in and check-out?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Our standard check-in time is <strong>3:00 PM</strong> and check-out is <strong>11:00 AM</strong>.</p>
+                            <p>Early check-in and late check-out may be available upon request, subject to availability and possibly an additional charge. Please contact our concierge team in advance to arrange this.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dining FAQs -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What dining options are available at the palace?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Azure Santorini Palace features several exceptional dining venues:</p>
+                            <ul>
+                                <li><strong>Azure Restaurant:</strong> Our signature fine dining experience with sunset views</li>
+                                <li><strong>The Terrace:</strong> Casual all-day dining by the pool</li>
+                                <li><strong>Vine Cellar:</strong> Premium wine bar with local Santorini vintages</li>
+                                <li><strong>In-Room Dining:</strong> 24-hour gourmet room service</li>
+                            </ul>
+                            <p>We accommodate all dietary requirements with advance notice. Our chefs specialize in Mediterranean cuisine with locally-sourced ingredients.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is breakfast included in my stay?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Breakfast is included for all guests staying in our suites and villas. Our lavish breakfast buffet is served daily from <strong>7:00 AM to 11:00 AM</strong> at Azure Restaurant, featuring:</p>
+                            <ul>
+                                <li>Fresh local fruits and juices</li>
+                                <li>Artisanal breads and pastries</li>
+                                <li>Greek yogurt with honey and nuts</li>
+                                <li>Eggs and omelets made to order</li>
+                                <li>Selection of cheeses and cold cuts</li>
+                            </ul>
+                            <p>Guests in our Garden Rooms may add breakfast for €35 per person per day.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Amenities FAQs -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What amenities and services does the palace offer?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Our palace offers world-class amenities including:</p>
+                            <ul>
+                                <li>Infinity pool with private cabanas</li>
+                                <li>Full-service luxury spa and wellness center</li>
+                                <li>24-hour concierge and butler service</li>
+                                <li>Private beach access with complimentary loungers</li>
+                                <li>State-of-the-art fitness center</li>
+                                <li>Complimentary WiFi throughout the property</li>
+                                <li>Valet parking and Tesla charging stations</li>
+                            </ul>
+                            <p>Additional services like private yacht charters, helicopter transfers, and guided tours can be arranged by our concierge.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking FAQs -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is your cancellation policy?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Our standard cancellation policy varies by rate plan:</p>
+                            <ul>
+                                <li><strong>Flexible Rate:</strong> Free cancellation up to 7 days prior to arrival</li>
+                                <li><strong>Advance Purchase Rate:</strong> Non-refundable, but may be modified for a fee</li>
+                                <li><strong>Peak Season:</strong> 14-day cancellation policy applies June-August</li>
+                            </ul>
+                            <p>We strongly recommend travel insurance for unexpected changes. For specific booking conditions, please refer to your confirmation email or contact our reservations team.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer airport transfers?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Yes, we offer premium private transfer services from Santorini Airport (JTR) and Athinios Port:</p>
+                            <ul>
+                                <li><strong>Luxury Sedan:</strong> €85 one-way (max 3 guests)</li>
+                                <li><strong>Premium SUV:</strong> €110 one-way (max 5 guests)</li>
+                                <li><strong>VIP Minivan:</strong> €150 one-way (max 8 guests)</li>
+                            </ul>
+                            <p>Transfers include meet-and-greet service and bottled water. Helicopter transfers can also be arranged. Please book transfers at least 48 hours in advance through our concierge team.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Family FAQs -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is Azure Santorini Palace family-friendly?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>Absolutely! While we cater to romantic getaways, we also welcome families with children aged 6 and above. Our Family Penthouse is specially designed for families, featuring:</p>
+                            <ul>
+                                <li>Two separate bedrooms</li>
+                                <li>Child-friendly amenities upon request</li>
+                                <li>Special children's menu in all restaurants</li>
+                                <li>Kids' pool area (open seasonally)</li>
+                                <li>Babysitting services (advance notice required)</li>
+                            </ul>
+                            <p>Please note our Royal Suites and Honeymoon Villas are adults-only (18+) for the comfort of all guests.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Special Requests -->
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can you accommodate special requests or celebrations?</h3>
+                        <div class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            <p>We specialize in creating unforgettable experiences and would be delighted to arrange:</p>
+                            <ul>
+                                <li>Anniversary and honeymoon packages</li>
+                                <li>Birthday surprises and celebrations</li>
+                                <li>Private dining experiences (beachfront, rooftop, or in-suite)</li>
+                                <li>Romantic turndown services</li>
+                                <li>Custom excursion itineraries</li>
+                                <li>Spa packages and in-room treatments</li>
+                            </ul>
+                            <p>Please contact our concierge team at least 7 days prior to arrival to discuss your special requests. For weddings and large events, we recommend contacting us at least 6 months in advance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="contact-cta">
+                <h3>Still have questions?</h3>
+                <p>Our concierge team is available 24/7 to assist with any inquiries about your stay at Azure Santorini Palace.</p>
+                <a href="finalcontact.html" class="cta-btn">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Azure Santorini Palace</h4>
+                    <p>Where luxury meets the Aegean in Santorini's most exclusive palace resort.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <a href="rooms.html">Suites & Villas</a>
+                    <a href="Amenities.html ">Amenities</a>
+                    <a href="blogs.html">Blog</a>
+                    <a href="finalmenu.html">Dining</a>
+                    <a href="barandlounge.html">Bar&Lounge</a>
+
+
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Imerovigli, Santorini 847 00, Greece</p>
+                    <p><i class="fas fa-phone-alt"></i> +30 22860 21234</p>
+                    <p><i class="fas fa-envelope"></i> palace@azuresantorini.com</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Exclusive Offers</h4>
+                    <p>Subscribe for palace privileges and special rates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="cta-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Azure Santorini Palace. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for FAQ Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other open items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

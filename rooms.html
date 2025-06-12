@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Santorini - Rooms & Suites</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ivory-white: #F8F5F0;
+            --soft-black: #121212;
+            --deep-charcoal: #2C2C2C;
+            --rich-gold: #C5A880;
+            --dark-gold: #B8996E;
+            --champagne-beige: #E6D5B8;
+            --emerald-green: #2E5E4E;
+            --dark-emerald: #284F41;
+            --dark-gray: #1A1A1A;
+            --warm-gray: #6D6D6D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--ivory-white);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--ivory-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--deep-charcoal);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--rich-gold);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--rich-gold);
+        }
+
+        .book-now-btn {
+            background-color: var(--emerald-green);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .book-now-btn:hover {
+            background-color: var(--dark-emerald);
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(18, 18, 18, 0.4), rgba(18, 18, 18, 0.4)), 
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--ivory-white);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Room Types Section */
+        .room-types {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--deep-charcoal);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--rich-gold);
+            margin: 1rem auto;
+        }
+
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .room-card {
+            background-color: var(--ivory-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--champagne-beige);
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .room-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .room-card:hover .room-image img {
+            transform: scale(1.05);
+        }
+
+        .room-details {
+            padding: 1.5rem;
+        }
+
+        .room-details h3 {
+            color: var(--deep-charcoal);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .room-price {
+            color: var(--rich-gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature {
+            background-color: var(--champagne-beige);
+            color: var(--dark-gray);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .room-description {
+            color: var(--warm-gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .view-btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--deep-charcoal);
+            border: 1px solid var(--rich-gold);
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .view-btn:hover {
+            background-color: var(--rich-gold);
+            color: var(--ivory-white);
+        }
+
+        /* Amenities Section */
+        .amenities {
+            background-color: var(--champagne-beige);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .amenity-item {
+            padding: 1.5rem;
+        }
+
+        .amenity-item i {
+            font-size: 2rem;
+            color: var(--rich-gold);
+            margin-bottom: 1rem;
+        }
+
+        .amenity-item h4 {
+            color: var(--deep-charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--deep-charcoal);
+            color: var(--ivory-white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            color: var(--rich-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column p, .footer-column a {
+            color: var(--champagne-beige);
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--ivory-white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--ivory-white);
+            background-color: var(--emerald-green);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--dark-emerald);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--champagne-beige);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .room-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Azure<span>Santorini</span></a>
+            <nav>
+                <ul>
+                                                            <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="finalmenu.html">Dining</a></li>
+                    <li><a href="bookingform.html">Booking</a></li>
+
+                    <li><a href="Amenities.html">Amenities</a></li>
+                    <li><a href="contact.html" style="color: var(--sunset-orange);">Contact</a></li>
+
+                    <li><a href="review.html">Review</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                      <li><a href="barandlounge.html">Bar&Lounge</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Luxury Rooms & Suites</h1>
+            <p>Experience unparalleled comfort with our exquisite accommodations, each designed to provide a serene retreat with breathtaking views of the Aegean Sea.</p>
+        </div>
+    </section>
+
+    <!-- Room Types Section -->
+    <section class="room-types">
+        <div class="container">
+            <h2 class="section-title">Our Accommodations</h2>
+            <div class="room-grid">
+                <!-- Deluxe Room -->
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNKsCvYSkWbanhN6esMAmeHKYj2916YeSnLg&s" alt="Deluxe room">
+                    </div>
+                    <div class="room-details">
+                        <h3>Deluxe Sea View</h3>
+                        <p class="room-price">From €320/night</p>
+                        <div class="room-features">
+                            <span class="feature">35 m²</span>
+                            <span class="feature">King Bed</span>
+                            <span class="feature">Sea View</span>
+                            <span class="feature">Balcony</span>
+                        </div>
+                        <p class="room-description">Our Deluxe rooms offer stunning sea views from private balconies, featuring elegant decor and premium amenities for a comfortable stay.</p>
+                        <a href="deluxeseaview.html" class="view-btn">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Executive Suite -->
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6" alt="Executive Suite">
+                    </div>
+                    <div class="room-details">
+                        <h3>Executive Suite</h3>
+                        <p class="room-price">From €480/night</p>
+                        <div class="room-features">
+                            <span class="feature">55 m²</span>
+                            <span class="feature">King Bed</span>
+                            <span class="feature">Panoramic View</span>
+                            <span class="feature">Jacuzzi</span>
+                        </div>
+                        <p class="room-description">Spacious suites with separate living areas, luxurious bathrooms with Jacuzzi tubs, and panoramic views of the caldera and sea.</p>
+                        <a href="executive-suite.html" class="view-btn">View Details</a>
+                    </div>
+                </div>
+
+                <!-- Presidential Suite -->
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32" alt="Presidential Suite">
+                    </div>
+                    <div class="room-details">
+                        <h3>Presidential Suite</h3>
+                        <p class="room-price">From €780/night</p>
+                        <div class="room-features">
+                            <span class="feature">85 m²</span>
+                            <span class="feature">Super King Bed</span>
+                            <span class="feature">Private Pool</span>
+                            <span class="feature">Butler Service</span>
+                        </div>
+                        <p class="room-description">Our most luxurious accommodation featuring a private infinity pool, expansive terrace, and exclusive butler service for the ultimate Santorini experience.</p>
+                        <a href="presendtialsuite.html" class="view-btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="amenities">
+        <div class="container">
+            <h2 class="section-title">Room Amenities</h2>
+            <p>All our rooms and suites include the following premium amenities</p>
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <i class="fas fa-wifi"></i>
+                    <h4>High-Speed WiFi</h4>
+                    <p>Complimentary high-speed internet access</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-wine-glass-alt"></i>
+                    <h4>Mini Bar</h4>
+                    <p>Stocked with premium beverages and snacks</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-umbrella-beach"></i>
+                    <h4>Beach Access</h4>
+                    <p>Private beach with sun loungers</p>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-concierge-bell"></i>
+                    <h4>24/7 Room Service</h4>
+                    <p>Gourmet dining available anytime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Azure Santorini</h4>
+                    <p>A luxury beach resort with breathtaking views of the Aegean Sea and world-class amenities.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+<li><a href="rooms.html">Rooms</a></li>
+<li><a href="finalmenu.html">Dining</a></li>
+<li><a href="bookingform.html">Booking</a></li>
+
+<li><a href="Amenities.html">Amenities</a></li>
+<li><a href="finalcontact.html" style="color: var(--sunset-orange);">Contact</a></li>
+
+<li><a href="review.html">Review</a></li>
+<li><a href="blogs.html">Blog</a></li>
+<li><a href="finalBarandlounge.html">Bar&Lounge</a></li>
+
+</ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Perivolos Beach, Santorini</p>
+                    <p><i class="fas fa-phone-alt"></i> +91 8978524578</p>
+                    <p><i class="fas fa-envelope"></i> reservations@azuresantorini.com</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for exclusive offers and updates</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="book-now-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Azure Santorini Beach Resort. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+<!-- Booking Form Modal -->
+<div id="bookingFormModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:200; justify-content:center; align-items:center;">
+    <div style="background:#fff; padding:2rem; border-radius:8px; max-width:500px; width:90%; position:relative;">
+        <span onclick="closeForm()" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:1.5rem;">&times;</span>
+        <h2 style="margin-bottom:1rem; text-align:center;">Book a Room</h2>
+        <form id="bookingForm" onsubmit="return validateBookingForm()">
+            <div style="margin-bottom:1rem;">
+                <label>Name:</label><br>
+                <input type="text" id="name" required style="width:100%; padding:0.5rem;">
+            </div>
+            <div style="margin-bottom:1rem;">
+                <label>Email:</label><br>
+                <input type="email" id="email" required style="width:100%; padding:0.5rem;">
+            </div>
+            <div style="margin-bottom:1rem;">
+                <label>Check-in Date:</label><br>
+                <input type="date" id="checkin" required style="width:100%; padding:0.5rem;">
+            </div>
+            <div style="margin-bottom:1rem;">
+                <label>Check-out Date:</label><br>
+                <input type="date" id="checkout" required style="width:100%; padding:0.5rem;">
+            </div>
+            <div style="margin-bottom:1rem;">
+                <label>Guests:</label><br>
+                <input type="number" id="guests" min="1" required style="width:100%; padding:0.5rem;">
+            </div>
+            <div style="text-align:center;">
+                <button type="submit" class="book-now-btn">Confirm Booking</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Trigger Booking Form -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const bookBtns = document.querySelectorAll('.book-now-btn');
+        bookBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openForm();
+            });
+        });
+    });
+</script>
+<script>
+    function openForm() {
+        document.getElementById('bookingFormModal').style.display = 'flex';
+    }
+
+    function closeForm() {
+        document.getElementById('bookingFormModal').style.display = 'none';
+    }
+
+    function validateBookingForm() {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const checkin = document.getElementById("checkin").value;
+        const checkout = document.getElementById("checkout").value;
+        const guests = document.getElementById("guests").value;
+
+        if (!name || !email || !checkin || !checkout || !guests) {
+            alert("Please fill in all fields.");
+            return false;
+        }
+
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if (!email.match(emailPattern)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+
+        if (new Date(checkout) <= new Date(checkin)) {
+            alert("Check-out must be after Check-in.");
+            return false;
+        }
+
+        alert("Booking submitted successfully!");
+        closeForm();
+        return false; // Prevent actual submission for demo
+    }
+</script>
+
+</body>
+</html>

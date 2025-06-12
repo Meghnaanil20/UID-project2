@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Santorini Palace - Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soft-sand: #F5EFE6;
+            --azure-blue: #1E5F74;
+            --gold-accent: #C9AD7F;
+            --seafoam: #A8C3BC;
+            --sunset-orange: #E27060;
+            --deep-navy: #1A2E35;
+            --pure-white: #FFFFFF;
+            --warm-sand: #D2848C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-sand);
+            color: var(--deep-navy);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--pure-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--azure-blue);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gold-accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--deep-navy);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--sunset-orange);
+        }
+
+        .book-now-btn {
+            background-color: var(--sunset-orange);
+            color: var(--pure-white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .book-now-btn:hover {
+            background-color: var(--azure-blue);
+            color: var(--pure-white);
+        }
+
+        /* Blog Hero */
+        .blog-hero {
+            background: linear-gradient(rgba(26, 46, 53, 0.5), rgba(26, 46, 53, 0.5)), 
+                        url('https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1631&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--pure-white);
+            position: relative;
+        }
+
+        .blog-hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .blog-hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Blog Content */
+        .blog-section {
+            padding: 4rem 0;
+            background-color: var(--pure-white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--deep-navy);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold-accent);
+            margin: 1rem auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background-color: var(--pure-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: var(--gold-accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .blog-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--azure-blue);
+        }
+
+        .blog-excerpt {
+            margin-bottom: 1.5rem;
+            color: var(--deep-navy);
+        }
+
+        .read-more {
+            color: var(--sunset-orange);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: var(--azure-blue);
+        }
+
+        .read-more i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .read-more:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            padding: 4rem 0;
+            background-color: var(--soft-sand);
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid var(--seafoam);
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .newsletter-btn {
+            background-color: var(--sunset-orange);
+            color: var(--pure-white);
+            border: none;
+            padding: 0.8rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .newsletter-btn:hover {
+            background-color: var(--azure-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--deep-navy);
+            color: var(--pure-white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            color: var(--gold-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column p, .footer-column a {
+            color: var(--seafoam);
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--pure-white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--pure-white);
+            background-color: var(--azure-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--sunset-orange);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--seafoam);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .blog-hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 1rem;
+            }
+
+            .blog-hero {
+                height: 50vh;
+            }
+
+            .blog-hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .blog-hero-content p {
+                font-size: 1rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="home.html" class="logo">Azure<span>Santorini Palace</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="finalmenu.html">Dining</a></li>
+                    <li><a href="bookingform.html">Booking</a></li>
+                    <li><a href="Amenities.html">Amenities</a></li>
+                    <li><a href="finalcontact.html">Contact</a></li>
+                    <li><a href="review.html">Review</a></li>
+                    <li><a href="blogs.html" style="color: var(--sunset-orange);">Blog</a></li>
+                    <li><a href="finalBarandlounge.html">Bar&Lounge</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="blog-hero-content">
+            <h1>Azure Stories</h1>
+            <p>Discover the latest news, travel tips, and insider guides to make your Santorini experience unforgettable.</p>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <h2 class="section-title">Latest Articles</h2>
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Santorini Sunset">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">June 15, 2023</span>
+                        <h3 class="blog-title">The Best Sunset Spots in Santorini</h3>
+                        <p class="blog-excerpt">Discover where to catch the most breathtaking sunsets on the island, from our favorite cliffside spots to hidden gems only locals know about.</p>
+                        
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Greek Cuisine">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">May 28, 2023</span>
+                        <h3 class="blog-title">A Guide to Santorini's Culinary Delights</h3>
+                        <p class="blog-excerpt">Explore the flavors of Santorini with our guide to the island's must-try dishes, local wines, and the best restaurants to experience authentic Greek cuisine.</p>
+                       
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Luxury Suite">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">May 10, 2023</span>
+                        <h3 class="blog-title">Luxury Travel: What Makes Azure Santorini Palace Unique</h3>
+                        <p class="blog-excerpt">Learn about the special touches that set our palace apart, from our personalized guest services to the architectural details inspired by Cycladic tradition.</p>
+                        
+                    </div>
+                </article>
+
+                <!-- Blog Post 4 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Santorini Beach">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">April 22, 2023</span>
+                        <h3 class="blog-title">Hidden Beaches of Santorini: Beyond the Crowds</h3>
+                        <p class="blog-excerpt">Escape the tourist hotspots with our guide to Santorini's secluded beaches, complete with tips on when to visit and what to bring.</p>
+                       
+                    </div>
+                </article>
+
+                <!-- Blog Post 5 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1631&q=80" alt="Santorini View">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">April 5, 2023</span>
+                        <h3 class="blog-title">Photography Guide: Capturing Santorini's Beauty</h3>
+                        <p class="blog-excerpt">Professional photographer shares tips on how to capture Santorini's iconic landscapes, from the whitewashed buildings to the dramatic caldera views.</p>
+                        
+                    </div>
+                </article>
+
+                <!-- Blog Post 6 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Greek Food">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">March 18, 2023</span>
+                        <h3 class="blog-title">Wine Tasting in Santorini: A Sommelier's Guide</h3>
+                        <p class="blog-excerpt">Discover the unique volcanic wines of Santorini, including the famous Assyrtiko, with recommendations for the best wineries to visit on the island.</p>
+                        
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <h2 class="section-title">Stay Updated</h2>
+            <p>Subscribe to our newsletter for exclusive content, special offers, and the latest news from Azure Santorini Palace.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Azure Santorini Palace</h4>
+                    <p>Where luxury meets the Aegean in Santorini's most exclusive palace resort.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                   
+                    <a href="finalmenu.html">Restaurant Menu</a>
+                    <a href="rooms.html">Rooms</a>
+                    <a href="Events.html">Events</a>
+                    <a href="blogs.html">Blogs</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Imerovigli, Santorini 847 00, Greece</p>
+                    <p><i class="fas fa-phone-alt"></i> +30 22860 21234</p>
+                    <p><i class="fas fa-envelope"></i> palace@azuresantorini.com</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for exclusive offers and Santorini travel inspiration.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="hero-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Azure Santorini Palace. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Newsletter form validation
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function (e) {
+                const emailInput = this.querySelector('input[type="email"]');
+                const email = emailInput.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailRegex.test(email)) {
+                    e.preventDefault();
+                    alert('Please enter a valid email address.');
+                    emailInput.focus();
+                } else {
+                    alert('Thank you for subscribing to our newsletter!');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

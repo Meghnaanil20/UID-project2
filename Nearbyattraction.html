@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby Attractions | Azure Santorini Palace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soft-sand: #F5EFE6;
+            --azure-blue: #1E5F74;
+            --gold-accent: #C9AD7F;
+            --seafoam: #A8C3BC;
+            --sunset-orange: #E27060;
+            --deep-navy: #1A2E35;
+            --pure-white: #FFFFFF;
+            --warm-sand: #D2848C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-sand);
+            color: var(--deep-navy);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--pure-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--azure-blue);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gold-accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--deep-navy);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--sunset-orange);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 46, 53, 0.5), rgba(26, 46, 53, 0.5)), 
+                        url('https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--pure-white);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Attractions Section */
+        .attractions-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--deep-navy);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold-accent);
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--deep-navy);
+            opacity: 0.8;
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .attraction-card {
+            background-color: var(--pure-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .attraction-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .attraction-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .attraction-card:hover .attraction-image img {
+            transform: scale(1.05);
+        }
+
+        .attraction-distance {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(30, 95, 116, 0.9);
+            color: var(--pure-white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .attraction-content {
+            padding: 1.5rem;
+        }
+
+        .attraction-content h3 {
+            color: var(--azure-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .attraction-location {
+            display: flex;
+            align-items: center;
+            color: var(--deep-navy);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .attraction-location i {
+            margin-right: 0.5rem;
+            color: var(--sunset-orange);
+        }
+
+        .attraction-description {
+            color: var(--deep-navy);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .attraction-link {
+            display: inline-block;
+            color: var(--sunset-orange);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .attraction-link:hover {
+            color: var(--azure-blue);
+        }
+
+        .attraction-link i {
+            margin-left: 0.3rem;
+            transition: transform 0.3s;
+        }
+
+        .attraction-link:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--deep-navy);
+            color: var(--pure-white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            color: var(--gold-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column p, .footer-column a {
+            color: var(--seafoam);
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--pure-white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--pure-white);
+            background-color: var(--azure-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--sunset-orange);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--seafoam);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .attractions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Azure<span>SantoriniPalace</span></a>
+            <nav>
+                <ul>
+                                                           <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="finalmenu.html">Dining</a></li>
+                    <li><a href="bookingform.html">Booking</a></li>
+
+                    <li><a href="Amenities.html">Amenities</a></li>
+                    <li><a href="finalcontact.html" style="color: var(--sunset-orange);">Contact</a></li>
+
+                    <li><a href="review.html">Review</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                      <li><a href="finalBarandlounge.html">Bar&Lounge</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Santorini</h1>
+            <p>Explore the breathtaking attractions near our beachfront paradise in Perivolos.</p>
+        </div>
+    </section>
+
+    <!-- Attractions Section -->
+    <section class="attractions-section">
+        <div class="container">
+            <h2 class="section-title">Nearby Attractions</h2>
+            <p class="section-subtitle">From ancient ruins to stunning beaches, discover the best that Santorini has to offer just moments from our resort.</p>
+            
+            <div class="attractions-grid">
+                <!-- Attraction 1 -->
+                <div class="attraction-card">
+                    <div class="attraction-image">
+                        <img src="https://images.unsplash.com/photo-1566438480900-0609be27a4be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1889&q=80" alt="Ancient Thera">
+                        <span class="attraction-distance">5.2 km</span>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Ancient Thera</h3>
+                        <div class="attraction-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mesa Vouno Mountain</span>
+                        </div>
+                        <p class="attraction-description">Explore the ruins of this ancient city dating back to the 9th century BC, offering panoramic views of the island.</p>
+                        <a href="https://www.google.com/maps/place/Ancient+Thera/@36.3647222,25.4791667,17z/data=!3m1!4b1!4m6!3m5!1s0x1499cdce05e3bce9:0x9f4c192bbefa1db!8m2!3d36.3647222!4d25.4816667!16zL20vMDJ0N2hy?entry=ttu" class="attraction-link" target="_blank">View on Google Maps <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Attraction 2 -->
+                <div class="attraction-card">
+                    <div class="attraction-image">
+                        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1938&q=80" alt="Red Beach">
+                        <span class="attraction-distance">8.7 km</span>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Red Beach</h3>
+                        <div class="attraction-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Akrotiri</span>
+                        </div>
+                        <p class="attraction-description">Famous for its striking red volcanic cliffs and crystal-clear waters, this is one of Santorini's most photographed beaches.</p>
+                        <a href="https://www.google.com/maps/place/Red+Beach/@36.3497222,25.3763889,17z/data=!3m1!4b1!4m6!3m5!1s0x1499cdc3a7b10a8f:0x5a1e6e6e1e3e1e1e!8m2!3d36.3497222!4d25.3788889!16zL20vMDJ0N2hy?entry=ttu" class="attraction-link" target="_blank">View on Google Maps <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Attraction 3 -->
+                <div class="attraction-card">
+                    <div class="attraction-image">
+                        <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Santorini Caldera">
+                        <span class="attraction-distance">12.3 km</span>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Santorini Caldera</h3>
+                        <div class="attraction-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Fira & Oia</span>
+                        </div>
+                        <p class="attraction-description">The volcanic crater formed by the massive Minoan eruption, now offering breathtaking sunset views and luxury cliffside villages.</p>
+                        <a href="https://www.google.com/maps/place/Santorini+Caldera/@36.4333333,25.4,14z/data=!3m1!4b1!4m6!3m5!1s0x1499cdce05e3bce9:0x9f4c192bbefa1db!8m2!3d36.4333333!4d25.4166667!16zL20vMDJ0N2hy?entry=ttu" class="attraction-link" target="_blank">View on Google Maps <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Attraction 4 -->
+                <div class="attraction-card">
+                    <div class="attraction-image">
+                        <img src="https://images.unsplash.com/photo-1565992441121-4367c2967103?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Akrotiri Archaeological Site">
+                        <span class="attraction-distance">7.5 km</span>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Akrotiri Excavations</h3>
+                        <div class="attraction-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Akrotiri</span>
+                        </div>
+                        <p class="attraction-description">Often called the "Minoan Pompeii," this Bronze Age settlement was preserved in volcanic ash around 1600 BC.</p>
+                        <a href="https://www.google.com/maps/place/Akrotiri+Archaeological+Site/@36.3513889,25.4027778,17z/data=!3m1!4b1!4m6!3m5!1s0x1499cdc3a7b10a8f:0x5a1e6e6e1e3e1e1e!8m2!3d36.3513889!4d25.4052778!16zL20vMDJ0N2hy?entry=ttu" class="attraction-link" target="_blank">View on Google Maps <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Attraction 5 -->
+                <div class="attraction-card">
+                    <div class="attraction-image">
+                        <img src="santowines.jpg" alt="Santo Winery">
+                        <span class="attraction-distance">9.8 km</span>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Santo Winery</h3>
+                        <div class="attraction-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Pyrgos</span>
+                        </div>
+                        <p class="attraction-description">Sample Santorini's famous volcanic wines while enjoying spectacular caldera views at this award-winning winery.</p>
+                        <a href="https://www.google.com/maps/place/Santo+Winery/@36.4333333,25.4,14z/data=!3m1!4b1!4m6!3m5!1s0x1499cdce05e3bce9:0x9f4c192bbefa1db!8m2!3d36.4333333!4d25.4166667!16zL20vMDJ0N2hy?entry=ttu" class="attraction-link" target="_blank">View on Google Maps <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Attraction 6 -->
+                <div class="attraction-card">
+                    <div class="attraction-image">
+                        <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Oia Village">
+                        <span class="attraction-distance">15.2 km</span>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Oia Village</h3>
+                        <div class="attraction-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Northern Santorini</span>
+                        </div>
+                        <p class="attraction-description">The iconic whitewashed village with blue domes, famous for its spectacular sunsets and charming alleyways.</p>
+                        <a href="https://www.google.com/maps/place/Oia/@36.4611111,25.375,14z/data=!3m1!4b1!4m6!3m5!1s0x1499cdce05e3bce9:0x9f4c192bbefa1db!8m2!3d36.4611111!4d25.375!16zL20vMDJ0N2hy?entry=ttu" class="attraction-link" target="_blank">View on Google Maps <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Azure Santorini</h4>
+                    <p>A luxury beach resort and award-winning seaside restaurant on Santorini's finest beach.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                       
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    
+                    <a href="finalmenu.html">Restaurant Menu</a>
+                    <a href="rooms.html">Rooms</a>
+                    <a href="Events.html">Events </a>
+                    <a href="blogs.html">Blogs</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Perivolos Beach, Santorini</p>
+                    <p><i class="fas fa-phone-alt"></i> +30 22860 21234</p>
+                    <p><i class="fas fa-envelope"></i> reservations@azuresantorini.com</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Special Offers</h4>
+                    <p>Subscribe for exclusive beach resort packages and dining experiences.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="submit-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Azure Santorini Beach Resort & Restaurant. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Simple animation for attraction cards when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.attraction-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

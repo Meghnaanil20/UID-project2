@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Santorini Palace - Events & Conferences</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <style>
+        :root {
+            --soft-sand: #F5EFE6;
+            --azure-blue: #1E5F74;
+            --gold-accent: #C9AD7F;
+            --seafoam: #A8C3BC;
+            --sunset-orange: #E27060;
+            --deep-navy: #1A2E35;
+            --pure-white: #FFFFFF;
+            --warm-sand: #D2848C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-sand);
+            color: var(--deep-navy);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--pure-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--azure-blue);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gold-accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--deep-navy);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--sunset-orange);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 46, 53, 0.5), rgba(26, 46, 53, 0.5)), 
+                        url('https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--pure-white);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--deep-navy);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold-accent);
+            margin: 1rem auto;
+        }
+
+        /* Venues Section */
+        .venues-section {
+            padding: 4rem 0;
+        }
+
+        .venue-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .venue-card {
+            background-color: var(--pure-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .venue-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .venue-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .venue-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .venue-card:hover .venue-image img {
+            transform: scale(1.05);
+        }
+
+        .venue-content {
+            padding: 1.5rem;
+        }
+
+        .venue-content h3 {
+            color: var(--azure-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .venue-capacity {
+            display: inline-block;
+            background-color: var(--seafoam);
+            color: var(--deep-navy);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .venue-features {
+            margin: 1rem 0;
+        }
+
+        .venue-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .venue-features i {
+            color: var(--gold-accent);
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .venue-btn {
+            display: inline-block;
+            background-color: var(--sunset-orange);
+            color: var(--pure-white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .venue-btn:hover {
+            background-color: var(--azure-blue);
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 4rem 0;
+            background-color: var(--pure-white);
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+            padding: 2rem 0;
+        }
+
+        .testimonial-card {
+            background-color: var(--soft-sand);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-text:before,
+        .testimonial-text:after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--gold-accent);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-text:before {
+            top: -1rem;
+            left: -1rem;
+        }
+
+        .testimonial-text:after {
+            bottom: -2rem;
+            right: -1rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            color: var(--azure-blue);
+            margin-bottom: 0.3rem;
+        }
+
+        .author-info p {
+            color: var(--deep-navy);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Booking Form Section */
+        .booking-section {
+            padding: 4rem 0;
+        }
+
+        .booking-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .booking-info {
+            background-color: var(--pure-white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .booking-info h3 {
+            color: var(--azure-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item i {
+            color: var(--gold-accent);
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+        }
+
+        .info-content h4 {
+            color: var(--deep-navy);
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .info-content p, .info-content a {
+            color: var(--deep-navy);
+            opacity: 0.8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .info-content a:hover {
+            color: var(--sunset-orange);
+        }
+
+        /* Booking Form */
+        .booking-form {
+            background-color: var(--pure-white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .booking-form h3 {
+            color: var(--azure-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--deep-navy);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--seafoam);
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--azure-blue);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--sunset-orange);
+            color: var(--pure-white);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--azure-blue);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 4rem 0;
+            background-color: var(--pure-white);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 46, 53, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: var(--pure-white);
+            font-size: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--deep-navy);
+            color: var(--pure-white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            color: var(--gold-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column p, .footer-column a {
+            color: var(--seafoam);
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--pure-white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--pure-white);
+            background-color: var(--azure-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--sunset-orange);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--seafoam);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Azure<span>SantoriniPalace</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="finalmenu.html">Dining</a></li>
+                    <li><a href="bookingform.html">Booking</a></li>
+
+                    <li><a href="Amenities.html">Amenities</a></li>
+                    <li><a href="finalcontact.html" style="color: var(--sunset-orange);">Contact</a></li>
+
+                    <li><a href="review.html">Review</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                      <li><a href="finalBarandlounge.html">Bar&Lounge</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Events & Conferences</h1>
+            <p>Host your unforgettable events at our stunning beachfront resort. From corporate meetings to dream weddings, we create magical experiences.</p>
+        </div>
+    </section>
+
+    <!-- Venues Section -->
+    <section class="venues-section">
+        <div class="container">
+            <h2 class="section-title">Our Event Venues</h2>
+            <div class="venue-cards">
+                <!-- Venue 1 -->
+                <div class="venue-card">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Grand Ballroom">
+                    </div>
+                    <div class="venue-content">
+                        <h3>Azure Grand Ballroom</h3>
+                        <span class="venue-capacity">Up to 300 guests</span>
+                        <p>Our largest indoor venue with panoramic ocean views, perfect for gala dinners and large conferences.</p>
+                        <ul class="venue-features">
+                            <li><i class="fas fa-wifi"></i> High-speed WiFi</li>
+                            <li><i class="fas fa-microphone"></i> AV equipment</li>
+                            <li><i class="fas fa-utensils"></i> Catering services</li>
+                            <li><i class="fas fa-parking"></i> Valet parking</li>
+                        </ul>
+                        <a href="#booking" class="venue-btn">Enquire Now</a>
+                    </div>
+                </div>
+
+                <!-- Venue 2 -->
+                <div class="venue-card">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1494&q=80" alt="Beach Pavilion">
+                    </div>
+                    <div class="venue-content">
+                        <h3>Beachfront Pavilion</h3>
+                        <span class="venue-capacity">Up to 150 guests</span>
+                        <p>An open-air venue right on the sand, ideal for weddings and sunset cocktail receptions.</p>
+                        <ul class="venue-features">
+                            <li><i class="fas fa-umbrella-beach"></i> Direct beach access</li>
+                            <li><i class="fas fa-music"></i> Sound system</li>
+                            <li><i class="fas fa-lightbulb"></i> Decorative lighting</li>
+                            <li><i class="fas fa-cocktail"></i> Bar service</li>
+                        </ul>
+                        <a href="#booking" class="venue-btn">Enquire Now</a>
+                    </div>
+                </div>
+
+                <!-- Venue 3 -->
+                <div class="venue-card">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Executive Boardroom">
+                    </div>
+                    <div class="venue-content">
+                        <h3>Executive Boardroom</h3>
+                        <span class="venue-capacity">Up to 25 guests</span>
+                        <p>A sophisticated meeting space with premium amenities for corporate retreats and executive meetings.</p>
+                        <ul class="venue-features">
+                            <li><i class="fas fa-tv"></i> 4K display</li>
+                            <li><i class="fas fa-coffee"></i> Refreshment station</li>
+                            <li><i class="fas fa-print"></i> Printing services</li>
+                            <li><i class="fas fa-concierge-bell"></i> Dedicated staff</li>
+                        </ul>
+                        <a href="#booking" class="venue-btn">Enquire Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <!-- Testimonial 1 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">The Azure team made our wedding dreams come true. Every detail was perfect, from the stunning beach ceremony to the exquisite reception. Our guests are still talking about it months later!</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Sarah & Michael Johnson</h4>
+                                    <p>Wedding - June 2023</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">Our annual sales conference was a huge success thanks to the Azure team. The facilities were top-notch, the catering delicious, and the staff went above and beyond to accommodate our needs.</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Chen">
+                                </div>
+                                <div class="author-info">
+                                    <h4>David Chen</h4>
+                                    <p>TechCorp - April 2023</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">I've organized dozens of corporate events across Europe, and Azure Santorini stands out as the best. The combination of professional service, breathtaking views, and attention to detail is unmatched.</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Elena Petrov">
+                                </div>
+                                <div class="author-info">
+                                    <h4>Elena Petrov</h4>
+                                    <p>Event Planner - May 2023</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking">
+        <div class="container">
+            <h2 class="section-title">Plan Your Event</h2>
+            <div class="booking-container">
+                <div class="booking-info">
+                    <h3>Event Planning Services</h3>
+                    <div class="info-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <div class="info-content">
+                            <h4>Availability</h4>
+                            <p>Check our calendar for available dates and seasonal packages.</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-concierge-bell"></i>
+                        <div class="info-content">
+                            <h4>Dedicated Planner</h4>
+                            <p>Each event is assigned a personal coordinator to handle all details.</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-utensils"></i>
+                        <div class="info-content">
+                            <h4>Catering Options</h4>
+                            <p>From cocktail receptions to formal seated dinners, our chefs create custom menus.</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-question-circle"></i>
+                        <div class="info-content">
+                            <h4>Have Questions?</h4>
+                            <p><a href="tel:+302286021236">+30 22860 21236</a></p>
+                            <p><a href="mailto:events@azuresantorini.com">events@azuresantorini.com</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-form">
+                    <h3>Event Inquiry Form</h3>
+                    <form id="eventForm">
+                        <div class="form-group">
+                            <label for="event-name">Your Name</label>
+                            <input type="text" id="event-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-email">Email Address</label>
+                            <input type="email" id="event-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-phone">Phone Number</label>
+                            <input type="tel" id="event-phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-type">Event Type</label>
+                            <select id="event-type" name="event-type" required>
+                                <option value="">Select event type</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="corporate">Corporate Event</option>
+                                <option value="conference">Conference</option>
+                                <option value="social">Social Gathering</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-venue">Preferred Venue</label>
+                            <select id="event-venue" name="venue">
+                                <option value="">Not sure</option>
+                                <option value="ballroom">Azure Grand Ballroom</option>
+                                <option value="pavilion">Beachfront Pavilion</option>
+                                <option value="boardroom">Executive Boardroom</option>
+                                <option value="multiple">Multiple Venues</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="event-date">Estimated Date</label>
+                            <input type="date" id="event-date" name="date">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-guests">Number of Guests</label>
+                            <input type="number" id="event-guests" name="guests" min="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="event-details">Event Details</label>
+                            <textarea id="event-details" name="details" placeholder="Tell us about your event vision, special requirements, etc."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Event Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Wedding at Azure">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Corporate Event">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Concert">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Gala Dinner">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Conference">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Azure Santorini</h4>
+                    <p>A luxury beach resort and award-winning seaside restaurant on Santorini's finest beach.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    
+                    <a href="finalmenu.html">Restaurant Menu</a>
+                    <a href="rooms.html">Rooms</a>
+                    <a href="Events.html">Events </a>
+                    <a href="blogs.html">Blogs</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Perivolos Beach, Santorini</p>
+                    <p><i class="fas fa-phone-alt"></i> +30 22860 21234</p>
+                    <p><i class="fas fa-envelope"></i> reservations@azuresantorini.com</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Special Offers</h4>
+                    <p>Subscribe for exclusive beach resort packages and dining experiences.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="submit-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Azure Santorini Beach Resort & Restaurant. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        
+
+        // Form Validation
+        document.getElementById('eventForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('event-name').value.trim();
+            const email = document.getElementById('event-email').value.trim();
+            const phone = document.getElementById('event-phone').value.trim();
+            const eventType = document.getElementById('event-type').value.trim();
+            
+            // Simple validation
+            if (name === '' || email === '' || phone === '' || eventType === '') {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // If validation passes, you would typically send the form data to a server here
+            alert('Thank you for your inquiry! Our events team will contact you within 24 hours.');
+            this.reset();
+        });
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        

@@ -1,0 +1,535 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Santorini Palace - Amenities & Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soft-sand: #F5EFE6;
+            --azure-blue: #1E5F74;
+            --gold-accent: #C9AD7F;
+            --seafoam: #A8C3BC;
+            --sunset-orange: #E27060;
+            --deep-navy: #1A2E35;
+            --pure-white: #FFFFFF;
+            --warm-sand: #D2848C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-sand);
+            color: var(--deep-navy);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--pure-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--azure-blue);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gold-accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--deep-navy);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--sunset-orange);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 46, 53, 0.5), rgba(26, 46, 53, 0.5)), 
+                        url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--pure-white);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Amenities Section */
+        .amenities-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--deep-navy);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold-accent);
+            margin: 1rem auto;
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: var(--deep-navy);
+            opacity: 0.9;
+        }
+
+        .amenities-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .amenity-card {
+            background-color: var(--pure-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .amenity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .amenity-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .amenity-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .amenity-card:hover .amenity-img img {
+            transform: scale(1.05);
+        }
+
+        .amenity-content {
+            padding: 1.5rem;
+        }
+
+        .amenity-content h3 {
+            color: var(--azure-blue);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .amenity-content p {
+            color: var(--deep-navy);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .amenity-icon {
+            color: var(--gold-accent);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Nearby Activities CTA */
+        .activities-cta {
+            background-color: var(--azure-blue);
+            padding: 4rem 0;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .activities-cta .container {
+            max-width: 800px;
+        }
+
+        .activities-cta h2 {
+            color: var(--pure-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .activities-cta p {
+            color: var(--seafoam);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--sunset-orange);
+            color: var(--pure-white);
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--gold-accent);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--deep-navy);
+            color: var(--pure-white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            color: var(--gold-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column p, .footer-column a {
+            color: var(--seafoam);
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--pure-white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--pure-white);
+            background-color: var(--azure-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--sunset-orange);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--seafoam);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .amenities-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Azure<span>SantoriniPalace</span></a>
+            <nav>
+                <ul>
+                                                            <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Rooms</a></li>
+                    <li><a href="finalmenu.html">Dining</a></li>
+                    <li><a href="bookingform.html">Booking</a></li>
+
+                    <li><a href="Amenities.html">Amenities</a></li>
+                    <li><a href="finalcontact.html" style="color: var(--sunset-orange);">Contact</a></li>
+
+                    <li><a href="review.html">Review</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                      <li><a href="finalBarandlounge.html">Bar&Lounge</a></li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Resort Amenities & Services</h1>
+            <p>Experience unparalleled luxury with our world-class facilities designed to make your stay unforgettable.</p>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="amenities-section">
+        <div class="container">
+            <h2 class="section-title">Our Amenities</h2>
+            <p class="section-intro">At Azure Santorini Palace, we've curated every detail to ensure your comfort and enjoyment. From rejuvenating spa treatments to exhilarating water sports, discover the perfect balance of relaxation and adventure.</p>
+            
+            <div class="amenities-container">
+                <!-- Amenity 1 -->
+                <div class="amenity-card">
+                    <div class="amenity-img">
+                        <img src="https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1631&q=80" alt="Infinity Pool">
+                    </div>
+                    <div class="amenity-content">
+                        <div class="amenity-icon">
+                            <i class="fas fa-swimming-pool"></i>
+                        </div>
+                        <h3>Infinity Pools</h3>
+                        <p>Three stunning infinity pools with breathtaking views of the Aegean Sea, including an adults-only pool and a family-friendly option with a shallow area for children.</p>
+                    </div>
+                </div>
+                
+                <!-- Amenity 2 -->
+                <div class="amenity-card">
+                    <div class="amenity-img">
+                        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Spa">
+                    </div>
+                    <div class="amenity-content">
+                        <div class="amenity-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <h3>Azure Spa</h3>
+                        <p>Our award-winning spa offers traditional Greek therapies, massages using local olive oil, and bespoke treatments in private cabanas overlooking the sea.</p>
+                    </div>
+                </div>
+                
+                <!-- Amenity 3 -->
+                <div class="amenity-card">
+                    <div class="amenity-img">
+                        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Restaurant">
+                    </div>
+                    <div class="amenity-content">
+                        <div class="amenity-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Beachfront Dining</h3>
+                        <p>Four distinct dining venues including our Michelin-starred seafood restaurant, a casual beach grill, a wine bar with 200+ Greek wines, and 24-hour room service.</p>
+                    </div>
+                </div>
+                
+                <!-- Amenity 4 -->
+                <div class="amenity-card">
+                    <div class="amenity-img">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Fitness Center">
+                    </div>
+                    <div class="amenity-content">
+                        <div class="amenity-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3>Fitness & Wellness</h3>
+                        <p>State-of-the-art gym with personal trainers, sunrise yoga sessions on the beach, Pilates studio, and nutrition counseling to maintain your wellness routine.</p>
+                    </div>
+                </div>
+                
+                <!-- Amenity 5 -->
+                <div class="amenity-card">
+                    <div class="amenity-img">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Water Sports">
+                    </div>
+                    <div class="amenity-content">
+                        <div class="amenity-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h3>Water Sports Center</h3>
+                        <p>Complimentary paddleboards, kayaks, and snorkel gear. Also available: jet ski rentals, scuba diving excursions, and private yacht charters.</p>
+                    </div>
+                </div>
+                
+                <!-- Amenity 6 -->
+                <div class="amenity-card">
+                    <div class="amenity-img">
+                        <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Kids Club">
+                    </div>
+                    <div class="amenity-content">
+                        <div class="amenity-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h3>Azure Kids Club</h3>
+                        <p>Daily activities for children ages 4-12 including Greek mythology workshops, sandcastle competitions, and movie nights with babysitting services available.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nearby Activities CTA -->
+    <section class="activities-cta">
+        <div class="container">
+            <h2>Explore Santorini's Wonders</h2>
+            <p>Beyond our resort, discover the magic of Santorini with volcanic boat tours, sunset cruises, wine tasting at ancient vineyards, and visits to iconic blue-domed villages.</p>
+            <a href="Nearbyattraction.html" class="cta-btn">Discover Nearby Activities</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Azure Santorini</h4>
+                    <p>A luxury beach resort and award-winning seaside restaurant on Santorini's finest beach.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    
+                    <a href="finalmenu.html">Restaurant Menu</a>
+                    <a href="rooms.html">Rooms</a>
+                    <a href="Events.html">Events </a>
+                    <a href="blogs.html">Blogs</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Perivolos Beach, Santorini</p>
+                    <p><i class="fas fa-phone-alt"></i> +30 22860 21234</p>
+                    <p><i class="fas fa-envelope"></i> reservations@azuresantorini.com</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Special Offers</h4>
+                    <p>Subscribe for exclusive beach resort packages and dining experiences.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="submit-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Azure Santorini Beach Resort & Restaurant. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

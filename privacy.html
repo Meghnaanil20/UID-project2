@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Santorini Palace - Terms & Privacy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soft-sand: #F5EFE6;
+            --azure-blue: #1E5F74;
+            --gold-accent: #C9AD7F;
+            --seafoam: #A8C3BC;
+            --sunset-orange: #E27060;
+            --deep-navy: #1A2E35;
+            --pure-white: #FFFFFF;
+            --warm-sand: #D2848C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-sand);
+            color: var(--deep-navy);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--pure-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--azure-blue);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gold-accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--deep-navy);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--sunset-orange);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 46, 53, 0.5), rgba(26, 46, 53, 0.5)), 
+                        url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--pure-white);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Legal Section */
+        .legal-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--deep-navy);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold-accent);
+            margin: 1rem auto;
+        }
+
+        .legal-container {
+            background-color: var(--pure-white);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .legal-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .legal-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--seafoam);
+        }
+
+        .legal-nav a {
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: var(--deep-navy);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .legal-nav a.active {
+            color: var(--azure-blue);
+        }
+
+        .legal-nav a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--azure-blue);
+        }
+
+        .legal-nav a:hover {
+            color: var(--sunset-orange);
+        }
+
+        .legal-tab {
+            display: none;
+        }
+
+        .legal-tab.active {
+            display: block;
+        }
+
+        .legal-tab h3 {
+            color: var(--azure-blue);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        .legal-tab h4 {
+            color: var(--deep-navy);
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .legal-tab p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .legal-tab ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .legal-tab li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .last-updated {
+            font-style: italic;
+            color: var(--deep-navy);
+            opacity: 0.8;
+            margin-top: 2rem;
+            text-align: right;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--deep-navy);
+            color: var(--pure-white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            color: var(--gold-accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column p, .footer-column a {
+            color: var(--seafoam);
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--pure-white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--pure-white);
+            background-color: var(--azure-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--sunset-orange);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--seafoam);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .legal-container {
+                padding: 2rem;
+            }
+
+            .legal-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .legal-nav a {
+                padding: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Azure<span>Santorini Palace</span></a>
+            <nav>
+                <ul>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+<li><a href="rooms.html">Rooms</a></li>
+<li><a href="finalmenu.html">Dining</a></li>
+<li><a href="bookingform.html">Booking</a></li>
+
+<li><a href="Amenities.html">Amenities</a></li>
+<li><a href="finalcontact.html" style="color: var(--sunset-orange);">Contact</a></li>
+
+<li><a href="review.html">Review</a></li>
+<li><a href="blogs.html">Blog</a></li>
+<li><a href="finalBarandlounge.html">Bar&Lounge</a></li>
+
+</ul>
+
+</ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Terms & Privacy</h1>
+            <p>Our commitment to transparency and your peace of mind</p>
+        </div>
+    </section>
+
+    <!-- Legal Section -->
+    <section class="legal-section">
+        <div class="container">
+            <div class="legal-container">
+                <div class="legal-content">
+                    <div class="legal-nav">
+                        <a href="#" class="legal-link active" data-tab="terms">Terms & Conditions</a>
+                        <a href="#" class="legal-link" data-tab="privacy">Privacy Policy</a>
+                    </div>
+
+                    <!-- Terms & Conditions -->
+                    <div id="terms" class="legal-tab active">
+                        <h3>Azure Santorini Palace - Terms & Conditions</h3>
+                        <p>Last Updated: June 15, 2023</p>
+
+                        <h4>1. Reservations</h4>
+                        <p>All reservations at Azure Santorini Palace are subject to availability and these terms. To guarantee a reservation, we require:</p>
+                        <ul>
+                            <li>A valid credit card</li>
+                            <li>Complete guest information including full name, contact details, and arrival time</li>
+                            <li>Acceptance of these terms and conditions</li>
+                        </ul>
+
+                        <h4>2. Cancellation Policy</h4>
+                        <p>Cancellation policies vary by rate plan and season:</p>
+                        <ul>
+                            <li><strong>Standard Rate:</strong> Free cancellation up to 7 days prior to arrival</li>
+                            <li><strong>Non-Refundable Rate:</strong> Full prepayment required, no cancellations or changes permitted</li>
+                            <li><strong>Peak Season (June-August):</strong> 14-day cancellation policy applies</li>
+                        </ul>
+                        <p>No-shows will be charged the full amount of the reservation.</p>
+
+                        <h4>3. Payment</h4>
+                        <p>We accept all major credit cards (Visa, MasterCard, American Express). A pre-authorization may be required upon check-in for incidentals. All prices are in Euros (€) and include VAT at the current Greek rate.</p>
+
+                        <h4>4. Guest Responsibilities</h4>
+                        <p>Guests agree to:</p>
+                        <ul>
+                            <li>Respect all palace property and other guests</li>
+                            <li>Comply with all safety and security regulations</li>
+                            <li>Be responsible for any damages caused during their stay</li>
+                            <li>Not exceed the maximum occupancy of their accommodation</li>
+                        </ul>
+
+                        <h4>5. Check-In/Check-Out</h4>
+                        <p>Check-in time is 3:00 PM and check-out is 11:00 AM. Early check-in and late check-out may be available upon request for an additional fee.</p>
+
+                        <h4>6. Children Policy</h4>
+                        <p>Children under 12 stay free when sharing existing bedding with parents. Additional charges apply for extra beds. Some accommodations are adults-only (18+).</p>
+
+                        <h4>7. Pets</h4>
+                        <p>Small pets (under 15kg) are allowed in designated accommodations with prior approval, subject to a €50 per night cleaning fee.</p>
+
+                        <h4>8. Liability</h4>
+                        <p>Azure Santorini Palace is not responsible for loss or damage to guest property, or for injuries sustained on the premises except where caused by our negligence.</p>
+
+                        <h4>9. Governing Law</h4>
+                        <p>These terms are governed by Greek law. Any disputes shall be subject to the exclusive jurisdiction of the Greek courts.</p>
+                    </div>
+
+                    <!-- Privacy Policy -->
+                    <div id="privacy" class="legal-tab">
+                        <h3>Azure Santorini Palace - Privacy Policy</h3>
+                        <p>Last Updated: June 15, 2023</p>
+
+                        <h4>1. Information We Collect</h4>
+                        <p>We collect personal information to provide and improve our services:</p>
+                        <ul>
+                            <li><strong>Contact Information:</strong> Name, email, phone number, address</li>
+                            <li><strong>Booking Details:</strong> Stay dates, room preferences, special requests</li>
+                            <li><strong>Payment Information:</strong> Credit card details (processed securely)</li>
+                            <li><strong>Usage Data:</strong> Website interactions, preferences, feedback</li>
+                        </ul>
+
+                        <h4>2. How We Use Your Information</h4>
+                        <p>Your information helps us:</p>
+                        <ul>
+                            <li>Process and manage your reservation</li>
+                            <li>Provide personalized service during your stay</li>
+                            <li>Improve our services and guest experience</li>
+                            <li>Send marketing communications (with your consent)</li>
+                            <li>Comply with legal obligations</li>
+                        </ul>
+
+                        <h4>3. Data Sharing</h4>
+                        <p>We may share your information with:</p>
+                        <ul>
+                            <li>Service providers essential to your stay (e.g., payment processors)</li>
+                            <li>Legal authorities when required by law</li>
+                            <li>Third parties with your explicit consent</li>
+                        </ul>
+                        <p>We never sell guest data to third parties.</p>
+
+                        <h4>4. Data Security</h4>
+                        <p>We implement industry-standard security measures including:</p>
+                        <ul>
+                            <li>SSL encryption for online transactions</li>
+                            <li>Secure storage systems</li>
+                            <li>Limited access to personal data</li>
+                            <li>Regular security audits</li>
+                        </ul>
+
+                        <h4>5. Data Retention</h4>
+                        <p>We retain personal data only as long as necessary for:</p>
+                        <ul>
+                            <li>Providing services you requested</li>
+                            <li>Complying with legal obligations (typically 7 years for financial records)</li>
+                            <li>Resolving disputes</li>
+                        </ul>
+
+                        <h4>6. Your Rights</h4>
+                        <p>Under GDPR, you have the right to:</p>
+                        <ul>
+                            <li>Access your personal data</li>
+                            <li>Request correction of inaccurate data</li>
+                            <li>Request deletion of your data</li>
+                            <li>Object to or restrict processing</li>
+                            <li>Withdraw consent for marketing</li>
+                            <li>Lodge a complaint with the Hellenic Data Protection Authority</li>
+                        </ul>
+
+                        <h4>7. Cookies & Tracking</h4>
+                        <p>Our website uses cookies to:</p>
+                        <ul>
+                            <li>Enable essential functionality</li>
+                            <li>Analyze site usage (Google Analytics)</li>
+                            <li>Personalize your experience</li>
+                        </ul>
+                        <p>You can manage cookie preferences in your browser settings.</p>
+
+                        <h4>8. Changes to This Policy</h4>
+                        <p>We may update this policy periodically. Significant changes will be communicated to guests via email or on our website.</p>
+
+                        <h4>9. Contact Us</h4>
+                        <p>For privacy-related inquiries or requests, please contact our Data Protection Officer at <a href="mailto:privacy@azuresantorini.com">privacy@azuresantorini.com</a> or +30 22860 21234.</p>
+                    </div>
+
+                    <div class="last-updated">
+                        <p>Last updated: May 15, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h4>Azure Santorini Palace</h4>
+                    <p>Where luxury meets the Aegean in Santorini's most exclusive palace resort.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <a href="rooms.html">Suites & Villas</a>
+                    <a href="Amenities.html ">Amenities</a>
+                    <a href="blogs.html">Blog</a>
+                    <a href="finalmenu.html">Dining</a>
+                    <a href="barandlounge.html">Bar&Lounge</a>
+
+
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Imerovigli, Santorini 847 00, Greece</p>
+                    <p><i class="fas fa-phone-alt"></i> +30 22860 21234</p>
+                    <p><i class="fas fa-envelope"></i> palace@azuresantorini.com</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Exclusive Offers</h4>
+                    <p>Subscribe for palace privileges and special rates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="cta-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Azure Santorini Palace. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Tab Switching -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const legalLinks = document.querySelectorAll('.legal-link');
+            
+            legalLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and tabs
+                    document.querySelectorAll('.legal-link').forEach(l => l.classList.remove('active'));
+                    document.querySelectorAll('.legal-tab').forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Show corresponding tab
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
